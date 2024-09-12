@@ -6,11 +6,11 @@ import Button from "../components/Button";
 // eslint-disable-next-line react/prop-types
 const HeroSection = ({ heroSectionImage, text, showButton1, showButton2, buttonText1, buttonText2 }) => {
   return (
-    <div className="relative w-full h-auto">
+    <div className="relative w-full h-auto z-0">
       {/* Wrapper untuk gambar dan overlay */}
       <div className="relative w-full h-auto">
         {/* Gambar */}
-        <img src={heroSectionImage} alt="" className="w-full h-auto" />
+        <img src={heroSectionImage} alt="" className="w-[1440px] h-[696px]" />
 
         {/* Overlay hitam dengan opacity */}
         <div className="absolute inset-0 bg-black opacity-60 z-8"></div>

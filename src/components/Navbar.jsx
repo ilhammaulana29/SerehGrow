@@ -38,7 +38,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-10 transition-colors duration-800 ${isScrolled ? 'bg-greenPrimer' : 'bg-transparent'}`}>
+    <nav className={`border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-30 transition-colors duration-800 ${isScrolled ? 'bg-greenPrimer' : 'bg-transparent'}`}>
       <div className="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-5">
         {/* Logo */}
         <Link to="/">
