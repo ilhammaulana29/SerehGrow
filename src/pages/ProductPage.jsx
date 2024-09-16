@@ -9,11 +9,11 @@ const ProductPage = () => {
       heroSectionImage={ProductPageImage}
       text={
         <>
-          PRODUK MENGANDUNG GERANIOL DAN MINYAK ATSIRI :
+          Produk Mengandung Geraniol Dan Minyak Atsiri
           <br />
-          KUALITAS SEREH WANGI TERBAIK
+          Kualitas Sereh Wangi Terbaik
           <br />
-          UNTUK KESEHATAN DAN KECANTIKAN ALAMI
+          Untuk Kesehantan Dan Kecantikan Alami
         </>
       }
       showButton1={true}

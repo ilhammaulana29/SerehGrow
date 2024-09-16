@@ -2,9 +2,9 @@
 import React from 'react'
 
 // eslint-disable-next-line react/prop-types
-const Button = ({ className="", children="" }) => {
+const Button = ({ onClick, className="", children="" }) => {
   return (
-    <button className={className}>
+    <button onClick={onClick} className={className}>
       {children}
     </button>
   );

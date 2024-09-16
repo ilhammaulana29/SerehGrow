@@ -9,13 +9,13 @@ const GaleryPage = () => {
       heroSectionImage={GaleryPageImage}
       text={
         <>
-          JELAJAHI KEINDAHAN PROSES BUDIDAYA
+          Jelajahi Keindahan Proses Budidaya
           <br />
-          SEREH WANGI :
+          Sereh Wangi :
           <br />
-          DARI BIBIT UNGGUL HINGGA PANEN BERKUALITAS
+          Dari Bibit Unggul Hingga Panen Berkualitas
           <br />
-          DARI SETIAP FOTO
+          Dari Setiap Foto
         </>
       }
       showButton1={true}

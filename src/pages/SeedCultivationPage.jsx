@@ -9,13 +9,13 @@ const SeedCultivationPage = () => {
       heroSectionImage={CultivationPageImage}
       text={
         <>
-          RAIH HASIL OPTIMAL DARI BUDIDAYA
+          Raih Hasil Optimal Dari Budidaya
           <br />
-          SEREH WANGI :
+          Sereh Wangi :
           <br />
-          IKUTI LANGKAH DARI PERSIAPAN LAHAN
+          Ikuti langkah Dari Persiapan Lahan
           <br />
-          HINGGA PENYULINGAN TERBAIK
+          Hingga Penyulingan Terbaik
         </>
       }
       showButton1={true}

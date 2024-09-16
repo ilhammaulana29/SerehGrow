@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-import Furnace from "../assets/images/furnace.png";
+import React, { Children } from 'react';
 
-const Card = () => {
+// eslint-disable-next-line react/prop-types
+const Card = ({ className, classNameCardImage, cardImage, classNameCardText, textContent }) => {
   return (
-    <div className="flex flex-col hover:cursor-pointer bg-white drop-shadow-xl items-center justify-center w-80 h-72 p-4 rounded-xl">
-        <img src={Furnace} alt="" className="w-80 h-64 mb-4" />
-        <p className="text-center text-black font-semibold">Tungku Penyulingan</p>
+    <div className={`flex flex-col hover:cursor-pointer items-center justify-center p-4 ${className}`}>
+        <img src={cardImage} alt="" className={classNameCardImage} />
+        <p className={`text-center ${classNameCardText}`}>{textContent}</p>
     </div>
   )
 }

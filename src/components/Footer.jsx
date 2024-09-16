@@ -35,7 +35,7 @@ const Footer = () => {
           <p className="text-xs lg:text-base">Kota Bandung, Jawa Barat 40286</p>
         </div>
 
-        {/* Bagian tengah (Perusahaan, Resource) */}
+        {/* Bagian Kanan */}
         <div className="mb-8 flex flex-col lg:flex-row lg:space-x-16 lg:mb-0">
           <div>
             <h4 className="font-bold mb-2 text-sm lg:text-base lg:mb-4">
@@ -80,38 +80,36 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-        </div>
-
-        {/* Bagian kanan (Ikon media sosial) */}
-        <div className="flex flex-col items-start">
-          <h4 className="font-bold mb-2 text-xs lg:text-base lg:mb-4">
-            Ikuti Kami
-          </h4>
-          <div className="flex space-x-2 lg:space-x-4">
-            <a href="#">
-              <img
-                src={Instagram}
-                alt="Instagram"
-                className="w-4 h-4 lg:w-6 lg:h-6"
-              />
-            </a>
-            <a href="#">
-              <img src={X} alt="X" className="w-4 h-4 lg:w-6 lg:h-6" />
-            </a>
-            <a href="#">
-              <img
-                src={Facebook}
-                alt="Facebook"
-                className="w-4 h-4 lg:w-6 lg:h-6"
-              />
-            </a>
-            <a href="#">
-              <img
-                src={Tiktok}
-                alt="Tiktok"
-                className="w-4 h-4 lg:w-6 lg:h-6"
-              />
-            </a>
+          <div>
+            <h4 className="font-bold mb-2 mt-2 text-xs lg:text-base lg:mb-4 lg:mt-0">
+              Ikuti Kami
+            </h4>
+            <div className="flex space-x-2 lg:space-x-4">
+              <a href="#">
+                <img
+                  src={Instagram}
+                  alt="Instagram"
+                  className="w-4 h-4 lg:w-6 lg:h-6"
+                />
+              </a>
+              <a href="#">
+                <img src={X} alt="X" className="w-4 h-4 lg:w-6 lg:h-6" />
+              </a>
+              <a href="#">
+                <img
+                  src={Facebook}
+                  alt="Facebook"
+                  className="w-4 h-4 lg:w-6 lg:h-6"
+                />
+              </a>
+              <a href="#">
+                <img
+                  src={Tiktok}
+                  alt="Tiktok"
+                  className="w-4 h-4 lg:w-6 lg:h-6"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>

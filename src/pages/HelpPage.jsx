@@ -9,11 +9,11 @@ const HelpPage = () => {
       heroSectionImage={HelpPageImage}
       text={
         <>
-          BUTUH BANTUAN ?
+          Butuh Bantuan ?
           <br />
-          TEMUKAN SOLUSI CEPAT
+          Temukan Solusi Cepat
           <br />
-          DAN MUDAH DI PUSAT BANTUAN KAMI
+          Dan Mudah Dipusat Bantuan Kami
         </>
       }
       showButton1={true}

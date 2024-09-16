@@ -9,7 +9,9 @@ const CompanyPage = () => {
       heroSectionImage={banerPerusahaan}
       text={
         <>
-          PROFIL PERUSAHAAN
+          Profil Perusahaan
+          <br />
+          PT Cakrawala Global Informatika
         </>
       }
       showButton1={true}

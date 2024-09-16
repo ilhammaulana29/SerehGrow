@@ -9,7 +9,9 @@ const PartnersPage = () => {
       heroSectionImage={PartnersPageImage}
       text={
         <>
-          MITRA KAMI
+          Beberapa Lembaga Yang
+          <br />
+          Bekerjasama Dengan PT kami
         </>
       }
       showButton1={true}
