@@ -22,7 +22,7 @@ const HeroSection = ({ heroSectionImage, text, showButton1, showButton2, buttonT
       {/* Wrapper untuk gambar dan overlay */}
       <div className="relative w-full h-auto">
         {/* Gambar */}
-        <img src={heroSectionImage} alt="" className="w-96 h-96 lg:w-[1440px] lg:h-[696px]" />
+        <img src={heroSectionImage} alt="" className="w-full h-96 lg:w-full lg:h-[696px]" />
 
         {/* Overlay hitam dengan opacity */}
         <div className="absolute inset-0 bg-black opacity-60 z-8"></div>

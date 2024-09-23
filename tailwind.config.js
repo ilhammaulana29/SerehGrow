@@ -8,6 +8,8 @@ export default {
         green2: "#50B498",
         green3: "#DFFFF9",
         greenPrimer: "#1E5454",
+        greenLight: "#196A6A",
+        greenDark: "#214747"
       },
     },
     // fontSize: {

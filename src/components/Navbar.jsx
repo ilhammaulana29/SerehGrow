@@ -37,15 +37,27 @@ const Navbar = () => {
     };
   }, []);
 
+  // Tutup dropdown dan menu saat halaman berpindah
+  useEffect(() => {
+    setIsDropdownOpen(false); // Tutup dropdown
+    setIsOpen(false); // Tutup hamburger menu
+  }, [location]);
+
   return (
-    <nav className={`border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-30 transition-colors duration-800 ${isScrolled ? 'bg-greenPrimer' : 'bg-transparent'}`}>
+    <nav
+      className={`border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-30 transition-colors duration-800 ${
+        isScrolled ? "bg-greenPrimer" : "bg-transparent"
+      }`}
+    >
       <div className="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-5">
         {/* Logo */}
         <Link to="/">
           <img
             src={logo}
             alt="Logo"
-            className={`absolute left-4 top-1/2 transform -translate-y-1/2 lg:w-40 w-24 ${isOpen ? "opacity-0" : "opacity-100"}`}
+            className={`absolute left-4 top-1/2 transform -translate-y-1/2 lg:w-40 w-24 ${
+              isOpen ? "opacity-0" : "opacity-100"
+            }`}
           />
         </Link>
 
@@ -79,7 +91,11 @@ const Navbar = () => {
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className={`py-2 px-3 rounded text-xl flex items-center ${location.pathname === "/#" ? "text-white md:bg-transparent md:text-white font-semibold" : "text-white hover:text-gray-100 md:text-white"}`}
+              className={`py-2 px-3 rounded text-xl flex items-center ${
+                location.pathname === "/#"
+                  ? "text-white md:bg-transparent md:text-white font-semibold"
+                  : "text-white hover:text-gray-100 md:text-white"
+              }`}
             >
               Tentang Kami
               <img src={chevronDown} alt="" className="ml-2 mt-2 w-3 h-3" />
@@ -87,7 +103,10 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute left-0 mt-2 bg-white text-black rounded shadow-lg w-40">
-                <Link to="/perusahaan" className="block px-4 py-2 hover:bg-gray-200">
+                <Link
+                  to="/perusahaan"
+                  className="block px-4 py-2 hover:bg-gray-200"
+                >
                   Perusahaan
                 </Link>
                 <Link to="/mitra" className="block px-4 py-2 hover:bg-gray-200">
@@ -101,25 +120,41 @@ const Navbar = () => {
           </div>
           <Link
             to="/budidaya"
-            className={`py-2 px-3 rounded text-xl ${location.pathname === "/budidaya" ? "text-white md:bg-transparent md:text-white font-semibold" : "text-white hover:text-gray-100 md:text-white"}`}
+            className={`py-2 px-3 rounded text-xl ${
+              location.pathname === "/budidaya"
+                ? "text-white md:bg-transparent md:text-white font-semibold"
+                : "text-white hover:text-gray-100 md:text-white"
+            }`}
           >
             Budidaya
           </Link>
           <Link
             to="/galeri"
-            className={`py-2 px-3 rounded text-xl ${location.pathname === "/galeri" ? "text-white md:bg-transparent md:text-white font-semibold" : "text-white hover:text-gray-100 md:text-white"}`}
+            className={`py-2 px-3 rounded text-xl ${
+              location.pathname === "/galeri"
+                ? "text-white md:bg-transparent md:text-white font-semibold"
+                : "text-white hover:text-gray-100 md:text-white"
+            }`}
           >
             Galeri
           </Link>
           <Link
             to="/produk"
-            className={`py-2 px-3 rounded text-xl ${location.pathname === "/produk" ? "text-white md:bg-transparent md:text-white font-semibold" : "text-white hover:text-gray-100 md:text-white"}`}
+            className={`py-2 px-3 rounded text-xl ${
+              location.pathname === "/produk"
+                ? "text-white md:bg-transparent md:text-white font-semibold"
+                : "text-white hover:text-gray-100 md:text-white"
+            }`}
           >
             Produk
           </Link>
           <Link
             to="/bantuan"
-            className={`py-2 px-3 rounded text-xl ${location.pathname === "/bantuan" ? "text-white md:bg-transparent md:text-white font-semibold" : "text-white hover:text-gray-100 md:text-white"}`}
+            className={`py-2 px-3 rounded text-xl ${
+              location.pathname === "/bantuan"
+                ? "text-white md:bg-transparent md:text-white font-semibold"
+                : "text-white hover:text-gray-100 md:text-white"
+            }`}
           >
             Bantuan
           </Link>
@@ -153,16 +188,23 @@ const Navbar = () => {
             Kontak
           </Link>
           <div>
-            <button onClick={toggleDropdown} className="py-2 px-4 flex items-center">
+            <button
+              onClick={toggleDropdown}
+              className="py-2 px-4 flex items-center"
+            >
               Tentang Kami
-              <img src={chevronDown} alt="" className="ml-2 w-3 h-3 filter invert" />
+              <img
+                src={chevronDown}
+                alt=""
+                className="ml-2 w-3 h-3 filter invert"
+              />
             </button>
             {isDropdownOpen && (
               <div className="ml-5">
-                <Link to="/#" className="block px-4 py-2 hover:bg-gray-200">
+                <Link to="/perusahaan" className="block px-4 py-2 hover:bg-gray-200">
                   Perusahaan
                 </Link>
-                <Link to="/#" className="block px-4 py-2 hover:bg-gray-200">
+                <Link to="/mitra" className="block px-4 py-2 hover:bg-gray-200">
                   Mitra
                 </Link>
                 <Link to="#" className="block px-4 py-2 hover:bg-gray-200">
