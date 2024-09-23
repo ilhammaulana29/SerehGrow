@@ -5,6 +5,7 @@ import ProductPageImage from "../assets/images/product-page-image.png";
 
 const ProductPage = () => {
   return (
+    <>
     <HeroSection
       heroSectionImage={ProductPageImage}
       text={
@@ -19,6 +20,22 @@ const ProductPage = () => {
       showButton1={true}
       buttonText1="Selengkapnya"
     />
+    <div className="">
+      <p>
+
+      </p>
+      <div className="">
+        <div className="">
+          <img src="" alt="" />
+        </div>
+        <div className="">
+          <p>
+            
+          </p>
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 
