@@ -9,6 +9,7 @@ import FarmerStudyIcon from "../assets/images/farmer-study-icon.png";
 import HandphoneImage from "../assets/images/handphone-image.png";
 import InfromationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
+import News from "../components/News";
 
 const HomePage = () => {
   return (
@@ -147,6 +148,8 @@ const HomePage = () => {
         author="Gebby Salsabillah"
         detailsAuthor="Petani Sereh Wangi Bogor"
       />
+
+      <News />
     </>
   );
 };

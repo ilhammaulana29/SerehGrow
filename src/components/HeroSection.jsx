@@ -18,7 +18,7 @@ const HeroSection = ({ heroSectionImage, text, showButton1, showButton2, buttonT
   };
 
   return (
-    <div className="relative w-full h-auto z-0">
+    <div className="relative w-full h-auto z-0" id="herosection">
       {/* Wrapper untuk gambar dan overlay */}
       <div className="relative w-full h-auto">
         {/* Gambar */}

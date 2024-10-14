@@ -6,7 +6,7 @@ const Card = ({ className, classNameCardImage, cardImage, classNameCardText, tex
   return (
     <div className={`flex flex-col hover:cursor-pointer items-center justify-center p-4 ${className}`}>
         <img src={cardImage} alt="" className={classNameCardImage} />
-        <p className={`text-center ${classNameCardText}`}>{textContent}</p>
+        <p className={classNameCardText}>{textContent}</p>
     </div>
   )
 }
