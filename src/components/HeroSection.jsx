@@ -18,7 +18,7 @@ const HeroSection = ({ heroSectionImage, text, showButton1, showButton2, buttonT
   };
 
   return (
-    <div className="relative w-full h-auto z-0">
+    <div className="relative w-full h-auto z-0" id="herosection">
       {/* Wrapper untuk gambar dan overlay */}
       <div className="relative w-full h-auto">
         {/* Gambar */}
@@ -30,11 +30,11 @@ const HeroSection = ({ heroSectionImage, text, showButton1, showButton2, buttonT
 
       {/* Teks di atas overlay dan gambar */}
       <div className="absolute top-16 left-12 md:top-56 md:left-12 text-white text-xl md:text-5xl font-bold">
-        <p className="">{text}</p>
+        <p className="pe-10">{text}</p>
       </div>
 
       {/* Tombol-tombol ditampilkan sesuai dengan showButton1 dan showButton2 */}
-      <div className="absolute my-16 top-40 left-12 lg:top-96 lg:left-12 flex space-x-4">
+      <div className="absolute my-16 top-44 left-12 lg:top-96 lg:left-12 flex space-x-4">
         {showButton1 && (
           <Button
             onClick={() => handleButtonClick(scrollTarget1)}

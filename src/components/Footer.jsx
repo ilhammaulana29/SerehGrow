@@ -1,5 +1,5 @@
-// eslint-disable-next-line no-unused-vars
 import React from "react";
+import { Link } from "react-router-dom";  // Import Link
 import logo from "../assets/images/Logo.png";
 import Instagram from "../assets/images/instagram.png";
 import Facebook from "../assets/images/facebook.png";
@@ -15,12 +15,12 @@ const Footer = () => {
         <div className="bg-gray-300 w-8 h-8 lg:w-12 lg:h-12 rounded-full">
           <img src={Farmer} alt="Petani" className="w-8 h-8 lg:w-12 lg:h-12" />
         </div>
-        <a
-          href="#"
+        <Link
+          to="/bantuan"
           className="hover:underline font-semibold lg:font-bold text-greenPrimer text-[10px] lg:text-lg"
         >
           Butuh Bantuan ?
-        </a>
+        </Link>
       </div>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between px-4 lg:px-8">
         {/* Bagian kiri (logo, alamat, informasi perusahaan) */}
@@ -30,7 +30,7 @@ const Footer = () => {
             PT CAKRAWALA GLOBAL INFORMATIKA
           </p>
           <p className="text-xs lg:text-base">
-            Jl. Saturnus Sel. I No.10, Margasari, Kec. Buahbatu,
+            Jl. Saturnus Sel. II No.10, Margasari, Kec. Buahbatu,
           </p>
           <p className="text-xs lg:text-base">Kota Bandung, Jawa Barat 40286</p>
         </div>
@@ -43,14 +43,14 @@ const Footer = () => {
             </h4>
             <ul>
               <li className="mb-2 text-xs lg:text-base">
-                <a href="/perusahaan" className="hover:underline">
+                <Link to="/perusahaan" className="hover:underline">
                   Tentang Kami
-                </a>
+                </Link>
               </li>
               <li className="mb-2 text-xs lg:text-base">
-                <a href="/konten" className="hover:underline">
+                <Link to="/konten" className="hover:underline">
                   Konten
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -61,9 +61,9 @@ const Footer = () => {
             </h4>
             <ul>
               <li className="mb-2 text-xs lg:text-base">
-                <a href="#" className="hover:underline">
+                <Link to="/karir" className="hover:underline">
                   Karir
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -74,12 +74,13 @@ const Footer = () => {
             </h4>
             <ul>
               <li className="text-xs lg:mb-2 lg:text-base">
-                <a href="/bantuan" className="hover:underline">
+                <Link to="/bantuan" className="hover:underline">
                   Kontak
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
+
           <div>
             <h4 className="font-bold mb-2 mt-2 text-xs lg:text-base lg:mb-4 lg:mt-0">
               Ikuti Kami

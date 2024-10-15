@@ -7,7 +7,9 @@ import Carousel from "../components/Carousel";
 import CultivationFlow from "../components/CultivationFlow";
 import FarmerStudyIcon from "../assets/images/farmer-study-icon.png";
 import HandphoneImage from "../assets/images/handphone-image.png";
-import Testimoni from "../components/Testimoni";
+import InfromationCard from "../components/InformationCard";
+import TestimoniImage from "../assets/images/testimoni-image.png";
+import News from "../components/News";
 
 const HomePage = () => {
   return (
@@ -134,8 +136,20 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Bagian Testimoni */}
-      <Testimoni />
+      {/* Bagian informasi Testimoni */}
+      <InfromationCard
+        classNameTagLine="lg:hidden hidden"
+        image={TestimoniImage}
+        classNameDescription="font-mono"
+        description={`\" Budidaya serehwangi di daerah terasering bisa meningkatkan potensi
+        Agrowisata yang mampu membantu perekonomian masyarakat setempat dan
+        membuat desa menjadi lebih maju\ "`}
+        classNameAuthor="font-mono"
+        author="Gebby Salsabillah"
+        detailsAuthor="Petani Sereh Wangi Bogor"
+      />
+
+      <News />
     </>
   );
 };

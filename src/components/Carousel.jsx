@@ -3,6 +3,10 @@ import Card from "./Card";
 import ChevronLeft from "../assets/images/chevron-left.png";
 import ChevronRight from "../assets/images/chevron-right.png";
 import Furnace from "../assets/images/furnace.png";
+import img1 from "../assets/imageGalery/1.jpeg";
+import img2 from "../assets/imageGalery/15.jpeg";
+import img3 from "../assets/imageGalery/9.jpeg";
+import img4 from "../assets/imageGalery/4.jpeg";
 
 const Carousel = () => {
   const cardData = [
@@ -11,19 +15,19 @@ const Carousel = () => {
       textContent: "Tungku Penyulingan",
     },
     {
-      cardImage: Furnace,
+      cardImage: img1,
       textContent: "Mesin Penyulingan",
     },
     {
-      cardImage: Furnace,
+      cardImage: img2,
       textContent: "Pengering Daun",
     },
     {
-      cardImage: Furnace,
+      cardImage: img3,
       textContent: "Pengaduk Minyak",
     },
     {
-      cardImage: Furnace,
+      cardImage: img4,
       textContent: "Kontainer Minyak",
     },
   ];
@@ -90,7 +94,7 @@ const Carousel = () => {
               className={`lg:w-96 lg:h-72 flex-shrink-0 bg-white drop-shadow-xl rounded-xl`}
               cardImage={card.cardImage}
               classNameCardImage={`lg:w-96 lg:h-56 lg:mb-4 mb-0`}
-              classNameCardText={`text-black lg:text-base lg:mt-0 font-semibold`}
+              classNameCardText={`text-center text-black lg:text-base lg:mt-0 font-semibold`}
               textContent={card.textContent}
             />
           ))}

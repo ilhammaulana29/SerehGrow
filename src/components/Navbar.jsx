@@ -41,6 +41,7 @@ const Navbar = () => {
   useEffect(() => {
     setIsDropdownOpen(false); // Tutup dropdown
     setIsOpen(false); // Tutup hamburger menu
+    window.scrollTo(0, 0); // Scroll ke atas halaman
   }, [location]);
 
   return (
