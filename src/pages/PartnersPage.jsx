@@ -4,6 +4,10 @@ import HeroSection from "../components/HeroSection";
 import PartnersPageImage from "../assets/images/partners-page-image.png";
 import LogoCGI from "../assets/images/Logo-CGI.png";
 import Card from "../components/Card";
+import AppleLogo from "../assets/images/apple-logo.png";
+import BmwLogo from "../assets/images/bmw-logo.png";
+import TeslaLogo from "../assets/images/tesla-logo.png";
+import News from "../components/News";
 
 const CompanyProfile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -11,9 +15,9 @@ const CompanyProfile = () => {
 
   const governmentPartners = [
     { id: 1, name: "Lembaga Pemerintah 1", logo: LogoCGI },
-    { id: 2, name: "Lembaga Pemerintah 2", logo: "/path_to_gov_logo_2.png" },
-    { id: 3, name: "Lembaga Pemerintah 3", logo: "/path_to_gov_logo_3.png" },
-    { id: 4, name: "Lembaga Pemerintah 4", logo: "/path_to_gov_logo_4.png" },
+    { id: 2, name: "Lembaga Pemerintah 2", logo: AppleLogo },
+    { id: 3, name: "Lembaga Pemerintah 3", logo: BmwLogo },
+    { id: 4, name: "Lembaga Pemerintah 4", logo: TeslaLogo },
     { id: 5, name: "Lembaga Pemerintah 5", logo: "/path_to_gov_logo_5.png" },
     { id: 6, name: "Lembaga Pemerintah 6", logo: "/path_to_gov_logo_6.png" },
     { id: 7, name: "Lembaga Pemerintah 7", logo: "/path_to_gov_logo_7.png" },
@@ -22,9 +26,9 @@ const CompanyProfile = () => {
 
   const generalPartners = [
     { id: 1, name: "Mitra Umum 1", logo: LogoCGI },
-    { id: 2, name: "Mitra Umum 2", logo: "/path_to_general_logo_2.png" },
-    { id: 3, name: "Mitra Umum 3", logo: "/path_to_general_logo_3.png" },
-    { id: 4, name: "Mitra Umum 4", logo: "/path_to_general_logo_4.png" },
+    { id: 2, name: "Mitra Umum 2", logo: AppleLogo },
+    { id: 3, name: "Mitra Umum 3", logo: BmwLogo },
+    { id: 4, name: "Mitra Umum 4", logo: TeslaLogo },
     { id: 5, name: "Mitra Umum 5", logo: "/path_to_general_logo_5.png" },
     { id: 6, name: "Mitra Umum 6", logo: "/path_to_general_logo_6.png" },
     { id: 7, name: "Mitra Umum 7", logo: "/path_to_general_logo_7.png" },
@@ -125,6 +129,7 @@ const CompanyProfile = () => {
             </p>
           </div>
         </div>
+        
         <div className="lg:w-1/5 hidden lg:flex lg:justify-center items-center">
           <img
             src={LogoCGI}
@@ -189,34 +194,7 @@ const CompanyProfile = () => {
           </div>
         </div>
       )}
-
-<div className="flex justify-around items-center text-3xl font-bold text-[#196A6A] px-4 sm:px-8 lg:px-12">
-  <p>Jelajahi Berita Terbaru Dunia Pertanian</p>
-</div>
-
-      <div className="flex justify-center items-center py-10 space-x-5">
-        <Card
-          className="bg-white shadow-md rounded-lg w-72"
-          classNameCardImage="w-full h-32 object-cover rounded-t-lg"
-          cardImage="https://via.placeholder.com/150"
-          classNameCardText="text-lg font-bold text-gray-700 mt-4"
-          textContent="Kartu 1"
-        />
-        <Card
-          className="bg-white shadow-md rounded-lg w-72"
-          classNameCardImage="w-full h-32 object-cover rounded-t-lg"
-          cardImage="https://via.placeholder.com/150"
-          classNameCardText="text-lg font-bold text-gray-700 mt-4"
-          textContent="Kartu 2"
-        />
-        <Card
-          className="bg-white shadow-md rounded-lg w-72"
-          classNameCardImage="w-full h-32 object-cover rounded-t-lg"
-          cardImage="https://via.placeholder.com/150"
-          classNameCardText="text-lg font-bold text-gray-700 mt-4"
-          textContent="Kartu 3"
-        />
-      </div>
+      <News />
     </>
   );
 };

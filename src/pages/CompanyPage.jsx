@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 import banerPerusahaan from "../assets/images/company-page-image.png";
 import LogoCGI from "../assets/images/Logo-CGI.png";
 import Card from "../components/Card";
+import News from "../components/News";
 
 const CompanyPage = () => {
   return (
@@ -104,37 +105,7 @@ const CompanyPage = () => {
         </div>
       </div>
 
-      <div className="flex justify-around items-center text-3xl font-bold text-[#196A6A] px-4 sm:px-8 lg:px-12">
-  <p>Jelajahi Berita Terbaru Dunia Pertanian</p>
-</div>
-      <div className="flex justify-center items-center py-10 space-x-5">
-        {/* Card 1 */}
-        <Card
-          className="bg-white shadow-md rounded-lg w-72"
-          classNameCardImage="w-full h-32 object-cover rounded-t-lg"
-          cardImage="https://via.placeholder.com/150"
-          classNameCardText="text-lg font-bold text-gray-700 mt-4"
-          textContent="Kartu 1"
-        />
-
-        {/* Card 2 */}
-        <Card
-          className="bg-white shadow-md rounded-lg w-72"
-          classNameCardImage="w-full h-32 object-cover rounded-t-lg"
-          cardImage="https://via.placeholder.com/150"
-          classNameCardText="text-lg font-bold text-gray-700 mt-4"
-          textContent="Kartu 2"
-        />
-
-        {/* Card 3 */}
-        <Card
-          className="bg-white shadow-md rounded-lg w-72"
-          classNameCardImage="w-full h-32 object-cover rounded-t-lg"
-          cardImage="https://via.placeholder.com/150"
-          classNameCardText="text-lg font-bold text-gray-700 mt-4"
-          textContent="Kartu 3"
-        />
-      </div>
+      <News />
     </>
   );
 };
