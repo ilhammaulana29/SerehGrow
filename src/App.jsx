@@ -14,6 +14,7 @@ import PlantingCultivationPage from "./pages/PlantingCultivationPage";
 import HarvestCultivationPage from "./pages/HarvestCultivationPage";
 import DistilationCultivationPage from "./pages/DistilationCultivationPage";
 import GeneralLayout from "./layouts/GeneralLayout";
+import ContentDetail from "./pages/ContentDetail";
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
           <Route path="/galeri/:category" element={<GaleryPage />} />
           {/* Default route */}
           <Route path="/galeri" element={<GaleryPage />} />
+          {/* Route untuk DetailKonten dengan paramater slug */}
+          <Route path="/konten/:slug" element={<ContentDetail />} />
         </Routes>
       </GeneralLayout>
     </Router>

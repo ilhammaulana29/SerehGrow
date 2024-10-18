@@ -64,8 +64,8 @@ const PlantingCultivationPage = () => {
       <InformationCard
         classNameTestimoni="lg:hidden hidden"
         image={TestimoniImage}
-        tagLine="LAHAN YANG COCOK UNTUK BUDIDAYA SEREH WANGI"
-        description="Dalam budididaya serehwangi pemilihan bibit yang tepat menjadi tolak ukur keberhasilan panen, berikut jenis-jenis rumpun sereh wangi yang memiliki kualitas baik"
+        tagLine="CARA MERAWAT TANAMAN SEREH WANGI"
+        description="Untuk mendapatkan hasil panen yang maksimal, perawatan tanaman sereh wangi perlu dilakukan dengan baik. Beberapa hal yang harus diperhatikan dalam perawatan tanaman ini antara lain memastikan tanaman terkena sinar matahari yang cukup, Pastikan tanaman mendapatkan cukup air terutama saat musim kemarau, tanaman sereh wangi uniknya tidak terlalu banyak hama dan pupuk bisa diganti dengan daun hasil penyulingan."
         classNameAuthor="font-medium"
         author="SerehGrow"
         detailsAuthor="Hasilkan Minyak Atsiri"

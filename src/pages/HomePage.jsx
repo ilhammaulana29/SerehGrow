@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
 import HomePageImage from "../assets/images/home-page-image.png";
 import LemonGrass from "../assets/images/lemongrass-image.png";
@@ -9,9 +8,46 @@ import FarmerStudyIcon from "../assets/images/farmer-study-icon.png";
 import HandphoneImage from "../assets/images/handphone-image.png";
 import InfromationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
+import img1 from "../assets/imageGalery/1.jpeg";
 import News from "../components/News";
 
+const testimoniDatas = [
+  {
+    id: 1,
+    image: TestimoniImage,
+    description:
+      "Budidaya serehwangi di daerah terasering bisa meningkatkan potensi Agrowisata yang mampu membantu perekonomian masyarakat setempat dan membuat desa menjadi lebih maju",
+    author: "Artur Tendean Saputra",
+    detailsAuthor: "Mahasiswa Pertanian",
+  },
+  {
+    id: 2,
+    image: img1,
+    description:
+      "Budidaya serehwangi meminimalisir tanah dari bencana longsor, dan hasil minyaknya baik untuk kosmetik dan juga pengusir nyamuk",
+    author: "Tifany Anjasmara",
+    detailsAuthor: "Mahasiswa Pertanian",
+  },
+];
+
 const HomePage = () => {
+  // State untuk melacak testimonial yang ditampilkan
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // Fungsi untuk berpindah ke testimonial berikutnya
+  const handleNext = () => {
+    setCurrentTestimonial((prevIndex) =>
+      prevIndex === testimoniDatas.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Fungsi untuk berpindah ke testimonial sebelumnya
+  const handlePrev = () => {
+    setCurrentTestimonial((prevIndex) =>
+      prevIndex === 0 ? testimoniDatas.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <>
       <HeroSection
@@ -89,7 +125,6 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Ubah lebar teks menjadi lebih sempit agar teks membentuk beberapa baris */}
           <div className="lg:w-1/2">
             <p className="text-white text-justify text-lg">
               Serehwangi merupakan tanaman yang mudah dibudidayakan, terutama di
@@ -138,15 +173,16 @@ const HomePage = () => {
 
       {/* Bagian informasi Testimoni */}
       <InfromationCard
+        description={`\" ${testimoniDatas[currentTestimonial].description} \"`}
+        author={testimoniDatas[currentTestimonial].author}
+        detailsAuthor={testimoniDatas[currentTestimonial].detailsAuthor}
+        image={testimoniDatas[currentTestimonial].image}
         classNameTagLine="lg:hidden hidden"
-        image={TestimoniImage}
         classNameDescription="font-mono"
-        description={`\" Budidaya serehwangi di daerah terasering bisa meningkatkan potensi
-        Agrowisata yang mampu membantu perekonomian masyarakat setempat dan
-        membuat desa menjadi lebih maju\ "`}
         classNameAuthor="font-mono"
-        author="Gebby Salsabillah"
-        detailsAuthor="Petani Sereh Wangi Bogor"
+        classBtnPrevAndNext="flex"
+        prevOnClick={handlePrev}
+        nextOnClick={handleNext}
       />
 
       <News />

@@ -106,11 +106,12 @@ const GaleryPage = () => {
         }
         showButton1={true}
         buttonText1="Selengkapnya"
+        scrollTarget1="#galeri"
       />
 
       <div className="container mx-auto px-4 mb-20">
         {/* Kategori Gambar */}
-        <div className="flex justify-center space-x-4 my-4">
+        <div className="flex justify-center space-x-4 my-4" id="galeri">
           {["Semua", "Sereh", "Pabrik", "Produk"].map((item) => (
             <Link
               key={item}

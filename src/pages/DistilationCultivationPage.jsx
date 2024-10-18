@@ -58,8 +58,8 @@ const DistilationCultivationPage = () => {
       <InformationCard
         classNameTestimoni="lg:hidden hidden"
         image={TestimoniImage}
-        tagLine="LAHAN YANG COCOK UNTUK BUDIDAYA SEREH WANGI"
-        description="Dalam budididaya serehwangi pemilihan bibit yang tepat menjadi tolak ukur keberhasilan panen, berikut jenis-jenis rumpun sereh wangi yang memiliki kualitas baik"
+        tagLine="PROSES PENYULINGAN SEREH WANGI"
+        description="Setelah sereh wangi dipanen, langkah berikutnya adalah penyulingan untuk mengekstrak minyak atsiri. Proses penyulingan dilakukan dengan cara menguapkan dan mengembunkan uap minyak dari daun sereh wangi. Metode penyulingan yang umum digunakan adalah metode distilasi uap. Proses ini membutuhkan waktu dan suhu yang tepat untuk menghasilkan minyak sereh wangi berkualitas tinggi. Minyak yang dihasilkan akan memiliki warna kuning keemasan dengan aroma khas sereh wangi."
         classNameAuthor="font-medium"
         author="SerehGrow"
         detailsAuthor="Hasilkan Minyak Atsiri"

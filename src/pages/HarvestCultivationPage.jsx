@@ -58,8 +58,8 @@ const HarvestCultivationPage = () => {
       <InformationCard
         classNameTestimoni="lg:hidden hidden"
         image={TestimoniImage}
-        tagLine="LAHAN YANG COCOK UNTUK BUDIDAYA SEREH WANGI"
-        description="Dalam budididaya serehwangi pemilihan bibit yang tepat menjadi tolak ukur keberhasilan panen, berikut jenis-jenis rumpun sereh wangi yang memiliki kualitas baik"
+        tagLine="WAKTU DAN CARA PANEN TANAMAN SEREH WANGI"
+        description="Masa panen sereh wangi biasanya dilakukan setelah tanaman berusia 6-8 bulan. Tanaman sereh wangi dipanen ketika daunnya mulai menguning atau ketika aroma minyak atsirinya paling kuat. Cara memanen yang baik adalah dengan memotong bagian atas daun menggunakan sabit tajam. Hindari mencabut seluruh tanaman agar dapat tumbuh kembali untuk panen selanjutnya."
         classNameAuthor="font-medium"
         author="SerehGrow"
         detailsAuthor="Hasilkan Minyak Atsiri"

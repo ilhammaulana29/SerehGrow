@@ -11,7 +11,7 @@ const News = () => {
           Jelajahi Artikel Terbaru Dunia Pertanian
         </h3>
         <Link to="/konten">
-          <p className="font-medium text-green2 hover:underline">
+          <p className="font-medium text-green2 hover:underline inline-block">
             Lihat semua artikel
           </p>
         </Link>
