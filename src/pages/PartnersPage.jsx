@@ -3,25 +3,37 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import HeroSection from "../components/HeroSection";
 import PartnersPageImage from "../assets/images/partners-page-image.png";
 import LogoCGI from "../assets/images/Logo-CGI.png";
-import Card from "../components/Card";
 import AppleLogo from "../assets/images/apple-logo.png";
 import BmwLogo from "../assets/images/bmw-logo.png";
 import TeslaLogo from "../assets/images/tesla-logo.png";
 import News from "../components/News";
 
 const CompanyProfile = () => {
+  const [hoveredPartner, setHoveredPartner] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const governmentPartners = [
-    { id: 1, name: "Lembaga Pemerintah 1", logo: LogoCGI },
-    { id: 2, name: "Lembaga Pemerintah 2", logo: AppleLogo },
+    {
+      id: 1,
+      name: "Lembaga Pemerintah 1",
+      logo: LogoCGI,
+      description:
+        "Bmw merupakan salah satu mitra terlama yang sudah menjalainx ",
+    },
+    {
+      id: 2,
+      name: "Lembaga Pemerintah 2",
+      logo: AppleLogo,
+      description:
+        "Apple merupakan salah satu mitra terlama kami, mereka bekerja sama dengan kami dimulai sejak tahun 2009",
+    },
     { id: 3, name: "Lembaga Pemerintah 3", logo: BmwLogo },
     { id: 4, name: "Lembaga Pemerintah 4", logo: TeslaLogo },
-    { id: 5, name: "Lembaga Pemerintah 5", logo: "/path_to_gov_logo_5.png" },
-    { id: 6, name: "Lembaga Pemerintah 6", logo: "/path_to_gov_logo_6.png" },
-    { id: 7, name: "Lembaga Pemerintah 7", logo: "/path_to_gov_logo_7.png" },
-    { id: 8, name: "Lembaga Pemerintah 8", logo: "/path_to_gov_logo_8.png" },
+    { id: 5, name: "Lembaga Pemerintah 5", logo: TeslaLogo },
+    { id: 6, name: "Lembaga Pemerintah 6", logo: LogoCGI },
+    { id: 7, name: "Lembaga Pemerintah 7", logo: AppleLogo },
+    { id: 8, name: "Lembaga Pemerintah 8", logo: BmwLogo },
   ];
 
   const generalPartners = [
@@ -29,10 +41,10 @@ const CompanyProfile = () => {
     { id: 2, name: "Mitra Umum 2", logo: AppleLogo },
     { id: 3, name: "Mitra Umum 3", logo: BmwLogo },
     { id: 4, name: "Mitra Umum 4", logo: TeslaLogo },
-    { id: 5, name: "Mitra Umum 5", logo: "/path_to_general_logo_5.png" },
-    { id: 6, name: "Mitra Umum 6", logo: "/path_to_general_logo_6.png" },
-    { id: 7, name: "Mitra Umum 7", logo: "/path_to_general_logo_7.png" },
-    { id: 8, name: "Mitra Umum 8", logo: "/path_to_general_logo_8.png" },
+    { id: 5, name: "Mitra Umum 5", logo: LogoCGI },
+    { id: 6, name: "Mitra Umum 6", logo: LogoCGI },
+    { id: 7, name: "Mitra Umum 7", logo: LogoCGI },
+    { id: 8, name: "Mitra Umum 8", logo: LogoCGI },
   ];
 
   const allImages = [...governmentPartners, ...generalPartners];
@@ -55,24 +67,28 @@ const CompanyProfile = () => {
   };
 
   const PartnerSection = ({ title, partners }) => (
-    <div className="partners-section mb-12">
-      <h2 className="px-12 text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-6">
-        {title}
-      </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    <div className="partners-section mb-12 relative">
+      <div className="px-4 md:px-12 mb-6">
+        <h2 className="px-12 text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-6">
+          {title}
+        </h2>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 cursor-pointer">
         {partners.map((partner, index) => (
-          <div key={partner.id} className="flex justify-center items-center">
-            <img
-              src={partner.logo}
-              alt={partner.name}
-              className="w-24 h-24 object-contain cursor-pointer"
-              onClick={() =>
+          <div key={partner.id} onClick={() =>
                 openModal(
                   index +
                     (title === "Mitra Umum" ? governmentPartners.length : 0)
                 )
               }
+          className="flex flex-col justify-center items-center">
+            <img
+              src={partner.logo}
+              alt={partner.name}
+              className="w-24 h-24 object-contain "
+              
             />
+            <span className="font-medium hover:underline inline-block">{partner.name}</span>
           </div>
         ))}
       </div>
@@ -82,7 +98,7 @@ const CompanyProfile = () => {
   return (
     <>
       <HeroSection
-        heroSectionImage={PartnersPageImage} 
+        heroSectionImage={PartnersPageImage}
         text={
           <>
             Beberapa Lembaga Yang
@@ -129,7 +145,7 @@ const CompanyProfile = () => {
             </p>
           </div>
         </div>
-        
+
         <div className="lg:w-1/5 hidden lg:flex lg:justify-center items-center">
           <img
             src={LogoCGI}
@@ -163,17 +179,13 @@ const CompanyProfile = () => {
             <div className="flex-grow overflow-y-auto p-4">
               <img
                 src={selectedImage.logo}
-                alt={selectedImage.name}
+                alt={selectedImage.name.description}
                 className="w-full max-w-96 h-auto object-contain mb-4 mx-auto"
               />
-              <p className="text-lg text-center px-4 py-2">
-                PT Cakrawala Global Informatika Menjadi mitra teknologi terdepan
-                yang dipercaya oleh banyak perusahaan untuk memajukan bisnis
-                mereka di era digital. Kami percaya bahwa melalui inovasi,
-                kualitas layanan, dan keahlian teknis, kami dapat memberikan
-                kontribusi yang signifikan bagi kemajuan teknologi dan bisnis di
-                Indonesia.
-              </p>
+              {/* Deskripsi */}
+              <div className="bg-white w-full p-5 text-center">
+                <p className="text-lg">{selectedImage.description}</p>
+              </div>
             </div>
 
             {/* Footer with navigation buttons */}
