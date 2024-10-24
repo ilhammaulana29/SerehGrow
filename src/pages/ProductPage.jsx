@@ -138,7 +138,7 @@ const ProductPage = () => {
           </div>
           <div className="bg-white drop-shadow-md mt-10 p-5">
             <div className="flex lg:flex-row flex-col lg:space-x-10 space-y-5 lg:space-y-0 justify-center items-center">
-              <div className="w-2/12 w-44 flex-shrink-0">
+              <div className="w-2/12  flex-shrink-0">
                 <img src={ProductImage} alt="" />
               </div>
               <div className="lg:w-9/12 space-y-5 text-center lg:text-left">
