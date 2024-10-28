@@ -93,7 +93,10 @@ const CompanyProfile = () => {
         ))}
       </div>
     </div>
+
+    
   );
+
 
   return (
     <>
@@ -108,8 +111,9 @@ const CompanyProfile = () => {
         }
         showButton1={true}
         buttonText1="Selengkapnya"
+        scrollTarget1="#tentangKami"
       />
-      <div className="px-4 md:px-12 py-8 md:py-10 flex flex-col md:flex-row border-solid border-grey-400">
+      <div className="px-4 md:px-12 py-8 md:py-10 flex flex-col md:flex-row border-solid border-grey-400" id="tentangKami">
         <div className="w-full md:w-4/5 mb-8 md:mb-0">
           <div className="mb-4">
             <p className="text-2xl md:text-3xl font-bold text-[#468585]">
