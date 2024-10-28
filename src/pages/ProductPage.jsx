@@ -37,8 +37,9 @@ const ProductPage = () => {
         }
         showButton1={true}
         buttonText1="Selengkapnya"
+        scrollTarget1="#product"
       />
-      <div className="lg:px-12 px-4 mt-10">
+      <div className="lg:px-12 px-4 mt-10 " id="product">
         <p className="lg:text-2xl text-xl text-center lg:text-left text-green1 font-bold">
           PRODUK YANG DIHASILKAN SEREH WANGI
         </p>
