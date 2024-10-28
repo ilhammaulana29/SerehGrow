@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -15,12 +14,14 @@ import HarvestCultivationPage from "./pages/HarvestCultivationPage";
 import DistilationCultivationPage from "./pages/DistilationCultivationPage";
 import GeneralLayout from "./layouts/GeneralLayout";
 import ContentDetail from "./pages/ContentDetail";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
     <Router>
-      <GeneralLayout>
-        <Routes>
+      <Routes>
+        {/* Routes dengan GeneralLayout */}
+        <Route element={<GeneralLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/perusahaan" element={<CompanyPage />} />
           <Route path="/mitra" element={<PartnersPage />} />
@@ -36,12 +37,12 @@ function App() {
           <Route path="/penyulingan" element={<DistilationCultivationPage />} />
           {/* Route untuk gallery dengan parameter category */}
           <Route path="/galeri/:category" element={<GaleryPage />} />
-          {/* Default route */}
-          <Route path="/galeri" element={<GaleryPage />} />
           {/* Route untuk DetailKonten dengan paramater slug */}
           <Route path="/konten/:slug" element={<ContentDetail />} />
-        </Routes>
-      </GeneralLayout>
+        </Route>
+        {/* Route untuk halaman 404 tanpa GeneralLayout */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </Router>
   );
 }

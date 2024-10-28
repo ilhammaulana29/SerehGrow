@@ -55,8 +55,9 @@ const HelpPage = () => {
         }
         showButton1={true}
         buttonText1="Selengkapnya"
+        scrollTarget1="#help"
       />
-      <div className="flex flex-col md:flex-row gap-5 px-12 mt-16">
+      <div className="flex flex-col md:flex-row gap-5 px-12 mt-16" id="help">
         <div className="w-full md:w-1/5">
           <p className="text-xl font-bold">
             Inilah beberapa pertanyaan yang sering ditanyakan
@@ -72,7 +73,7 @@ const HelpPage = () => {
             {faqData.map((item, index) => (
               <div key={index}>
                 <div
-                  className="p-3 bg-gray-400 w-50 md-w rounded-md flex justify-between cursor-pointer"
+                  className="p-3 bg-gray-300 w-50 md-w rounded-md flex justify-between cursor-pointer"
                   onClick={() => toggleContentVisibility(index)}
                 >
                   <p>{item.question}</p>

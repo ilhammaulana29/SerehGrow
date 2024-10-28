@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -8,7 +9,9 @@ const GeneralLayouts = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="">{children}</main>
+      <main className="">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
