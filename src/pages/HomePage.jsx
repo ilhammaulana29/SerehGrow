@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import HomePageImage from "../assets/images/home-page-image.png";
-import LemonGrass from "../assets/images/lemongrass-image.png";
 import Carousel from "../components/Carousel";
 import CultivationFlow from "../components/CultivationFlow";
 import FarmerStudyIcon from "../assets/images/farmer-study-icon.png";
@@ -10,6 +9,7 @@ import InfromationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
 import img1 from "../assets/imageGalery/1.jpeg";
 import News from "../components/News";
+import axios from "axios";
 
 const testimoniDatas = [
   {
@@ -33,6 +33,8 @@ const testimoniDatas = [
 const HomePage = () => {
   // State untuk melacak testimonial yang ditampilkan
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [infoSerehWangiData, setInfoSerehWangiData] = useState(null);
+
 
   // Fungsi untuk berpindah ke testimonial berikutnya
   const handleNext = () => {
@@ -47,6 +49,24 @@ const HomePage = () => {
       prevIndex === 0 ? testimoniDatas.length - 1 : prevIndex - 1
     );
   };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/info-sereh-wangi");
+      const data = response.data.length > 0 ? response.data[0] : null;
+      setInfoSerehWangiData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (!infoSerehWangiData) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -82,24 +102,14 @@ const HomePage = () => {
             Apa Itu Sereh Wangi ?
           </h2>
           <p className="mt-4 text-gray-700 text-lg text-justify">
-            Serehwangi, atau lebih dikenal dengan nama ilmiah Cymbopogon nardus,
-            adalah jenis tanaman rumput yang terkenal karena menghasilkan minyak
-            atsiri berkualitas tinggi, yang dikenal dengan nama minyak serai
-            wangi atau citronella oil. Tanaman ini memiliki aroma segar yang
-            khas, mirip dengan lemon, dan telah lama digunakan dalam berbagai
-            aplikasi, mulai dari pengusir serangga alami, bahan baku industri
-            kosmetik dan parfum, hingga pengobatan tradisional. Serehwangi
-            merupakan tanaman yang mudah dibudidayakan, terutama di daerah
-            tropis seperti Indonesia. Selain memberikan nilai ekonomi yang
-            tinggi melalui produksi minyak atsiri, serehwangi juga memiliki
-            manfaat ekologis.
+            {infoSerehWangiData.deskripsi_sereh_wangi}
           </p>
         </div>
         {/* right side : image */}
         <div className="flex-1 flex justify-center lg:justify-end">
           <div className="w-60 h-60 lg:w-96 lg:h-96 rounded-full overflow-hidden">
             <img
-              src={LemonGrass}
+              src={`http://localhost:8000/storage/image-landing-page/${infoSerehWangiData.gambar}`}
               alt="Sereh Wangi"
               className="object-cover w-full h-full rounded-full"
             />
