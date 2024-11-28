@@ -33,8 +33,7 @@ const testimoniDatas = [
 const HomePage = () => {
   // State untuk melacak testimonial yang ditampilkan
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [infoSerehWangiData, setInfoSerehWangiData] = useState(null);
-
+  const [infoSerehWangiData, setInfoSerehWangiData] = useState([]);
 
   // Fungsi untuk berpindah ke testimonial berikutnya
   const handleNext = () => {
@@ -52,21 +51,18 @@ const HomePage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/info-sereh-wangi");
-      const data = response.data.length > 0 ? response.data[0] : null;
-      setInfoSerehWangiData(data);
+      const response = await axios.get(
+        "http://localhost:8000/api/info-sereh-wangi"
+      );
+      setInfoSerehWangiData(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error dalam mengambil data:", error);
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  if (!infoSerehWangiData) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <>
@@ -92,30 +88,33 @@ const HomePage = () => {
       {/* Bagian Cards */}
       <Carousel />
 
-      <div
-        className="flex flex-col-reverse lg:flex-row mx-auto w-full pt-10 lg:pt-28 px-4 lg:px-12 space-y-6 lg:space-y-0 lg:space-x-6"
-        id="serehwangi"
-      >
-        {/* left side : text */}
-        <div className="flex-1 lg:basis-5/12">
-          <h2 className="text-green1 text-3xl font-bold text-center lg:text-left mt-3 lg:mt-0">
-            Apa Itu Sereh Wangi ?
-          </h2>
-          <p className="mt-4 text-gray-700 text-lg text-justify">
-            {infoSerehWangiData.deskripsi_sereh_wangi}
-          </p>
-        </div>
-        {/* right side : image */}
-        <div className="flex-1 flex justify-center lg:justify-end">
-          <div className="w-60 h-60 lg:w-96 lg:h-96 rounded-full overflow-hidden">
-            <img
-              src={`http://localhost:8000/storage/image-landing-page/${infoSerehWangiData.gambar}`}
-              alt="Sereh Wangi"
-              className="object-cover w-full h-full rounded-full"
-            />
+      {infoSerehWangiData.map((data) => (
+        <div
+          key={data.id}
+          className="flex flex-col-reverse lg:flex-row mx-auto w-full pt-10 lg:pt-28 px-4 lg:px-12 space-y-6 lg:space-y-0 lg:space-x-6"
+          id="serehwangi"
+        >
+          {/* left side : text */}
+          <div className="flex-1 lg:basis-5/12">
+            <h2 className="text-green1 text-3xl font-bold text-center lg:text-left mt-3 lg:mt-0">
+              Apa Itu Sereh Wangi ?
+            </h2>
+            <p className="mt-4 text-gray-700 text-lg text-justify">
+              {data.deskripsi_sereh_wangi}
+            </p>
+          </div>
+          {/* right side : image */}
+          <div className="flex-1 flex justify-center lg:justify-end">
+            <div className="w-60 h-60 lg:w-96 lg:h-96 rounded-full overflow-hidden">
+              <img
+                src={`http://localhost:8000/storage/image-landing-page/${data.gambar}`}
+                alt="Sereh Wangi"
+                className="object-cover w-full h-full rounded-full"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      ))}
 
       {/* Bagian Alur Budidaya Sereh Wangi */}
       <CultivationFlow />
