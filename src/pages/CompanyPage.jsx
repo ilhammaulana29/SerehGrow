@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import banerPerusahaan from "../assets/images/company-page-image.png";
 import LogoCGI from "../assets/images/Logo-CGI.png";
 import iconCorporation from "/public/icon-corporation.png";
 import Card from "../components/Card";
 import News from "../components/News";
+import axios from "axios";
 
 const CompanyPage = () => {
+  const [companyData, setCompanyData] = useState({
+    nama_company: "", // Default value
+    slogan: "",
+    logo_company: LogoCGI // Default logo
+  });
+
+  // Fetch company data
+  useEffect(() => {
+    const fetchCompanyData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/companies/3");
+        
+        setCompanyData({
+          nama_company: response.data.nama_company || "",
+          slogan: response.data.slogan || "",
+          logo_company: response.data.logo_url || LogoCGI
+        });
+      } catch (error) {
+        console.error("Error fetching company data:", error);
+        // Tetap gunakan default values jika fetch gagal
+      }
+    };
+
+    fetchCompanyData();
+  }, []);
+
   return (
     <>
       <HeroSection
@@ -15,7 +42,7 @@ const CompanyPage = () => {
           <>
             Profil Perusahaan
             <br />
-            PT Cakrawala Global Informatika
+            {companyData.nama_company}
           </>
         }
         showButton1={true}
@@ -62,7 +89,7 @@ const CompanyPage = () => {
         {/* Desktop Logo */}
         <div className="lg:w-1/5 hidden lg:flex lg:justify-center items-center">
           <img
-            src={LogoCGI}
+            src={companyData.logo_company}
             alt="Logo CGI"
             className="lg:w-60 lg:h-60 object-contain"
           />
