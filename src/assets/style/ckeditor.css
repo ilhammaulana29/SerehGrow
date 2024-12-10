@@ -1,0 +1,63 @@
+.ck-content {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important; /* Paksa padding kiri */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Untuk browser berbasis WebKit seperti Chrome dan Safari */
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* Untuk Internet Explorer dan Edge */
+    scrollbar-width: none;     /* Untuk Firefox */
+}
+
+.rich-text-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.rich-text-content ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.rich-text-content li {
+    margin-bottom: 8px;
+    margin-left: 2rem;
+}
+
+.rich-text-content h1 {
+    font-size: 2rem; /* Ukuran font untuk H1 */
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.rich-text-content h2 {
+    font-size: 1.75rem; /* Ukuran font untuk H2 */
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.rich-text-content h3 {
+    font-size: 1.5rem; /* Ukuran font untuk H3 */
+    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+.rich-text-content a {
+    color: #007bff;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.rich-text-content a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
