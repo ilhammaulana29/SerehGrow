@@ -1,4 +1,5 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import CultivationPageImage from "../assets/images/cultivation-page-image.png";
 import Carousel from "../components/Carousel";
@@ -6,36 +7,28 @@ import CultivationFlow from "../components/CultivationFlow";
 import InformationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
 import DetailedCultivationInformation from "../components/DetailedCultivationInformation";
-import PlantingImage from "../assets/images/help-page-image.png";
 
 const PlantingCultivationPage = () => {
-  const description =
-    "Setelah lahan siap, langkah selanjutnya adalah penanaman dan perawatan yang tepat. Perawatan yang baik akan memastikan tanaman sereh wangi tumbuh dengan sehat dan menghasilkan minyak atsiri berkualitas.";
+  const [kontenPerawatanData, setKontenPerawatanData] = useState(null);
 
-  const sections = [
-    {
-      title: "Musim Tanam:",
-      items: [
-        "Penanaman sereh wangi sebaiknya dilakukan pada awal musim hujan. Curah hujan yang cukup di awal pertumbuhan akan membantu bibit beradaptasi dan tumbuh dengan baik. Musim hujan memberikan kelembaban tanah yang ideal untuk pertumbuhan sereh wangi.",
-      ],
-    },
-    {
-      title: "Proses Penanaman:",
-      items: [
-        "Bibit sereh wangi ditanam dengan kedalaman sekitar 5-10 cm. Pastikan bagian akar tertutup tanah dengan baik agar bibit bisa berdiri tegak dan mendapatkan nutrisi yang cukup dari tanah.",
-      ],
-    },
-    {
-      title: "Perawatan Tanaman:",
-      items: [
-        "Penyiraman: Sereh wangi tidak memerlukan penyiraman rutin. Penyiraman hanya diperlukan saat musim kering berkepanjangan, itupun cukup dilakukan sekali dalam seminggu.",
-        "Pemupukan: Tanaman sereh wangi tidak memerlukan pemupukan intensif. Namun, jika tanah dirasa kurang subur, pemupukan organik seperti kompos bisa dilakukan satu kali dalam setahun.",
-        "Pengendalian Hama: Sereh wangi relatif tahan terhadap hama. Namun, jika terjadi serangan hama, penggunaan pestisida organik disarankan untuk menjaga kualitas tanaman dan minyak yang dihasilkan.",
-      ],
-    },
-  ];
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/konten-perawatan"
+      );
+      const data = response.data?.length > 0 ? response.data[0] : null;
+      setKontenPerawatanData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setKontenPerawatanData(null);
+    }
+  };
 
-  const imageUrl = PlantingImage;
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
   const altText = "Gambar Penanaman";
 
   return (
@@ -70,13 +63,14 @@ const PlantingCultivationPage = () => {
         author="SerehGrow"
         detailsAuthor="Hasilkan Minyak Atsiri"
       />
-      {/* Bagian Detail Informasi Budidaya */}
-      <DetailedCultivationInformation
-        description={description}
-        sections={sections}
-        imageUrl={imageUrl}
-        altText={altText}
-      />{" "}
+     {kontenPerawatanData && (
+        <DetailedCultivationInformation
+          header={kontenPerawatanData.judul}
+          content={kontenPerawatanData.isi_konten}
+          altText={altText}
+          imageUrl={`http://localhost:8000/storage/image-konten-budidaya/${kontenPerawatanData.gambar}`}
+        />
+      )}
     </>
   );
 };

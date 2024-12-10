@@ -1,4 +1,5 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import CultivationPageImage from "../assets/images/cultivation-page-image.png";
 import Carousel from "../components/Carousel";
@@ -6,30 +7,27 @@ import CultivationFlow from "../components/CultivationFlow";
 import InformationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
 import DetailedCultivationInformation from "../components/DetailedCultivationInformation";
-import DistilationImage from "../assets/images/distilation-image.png";
 
 const DistilationCultivationPage = () => {
-  const description =
-    "Penyulingan merupakan proses mengubah daun sereh wangi menjadi minyak atsiri yang bernilai ekonomi tinggi. Proses ini memerlukan teknik dan alat khusus untuk mendapatkan hasil yang optimal.";
+  const [kontenPenyulinganData, setKontenPenyulinganData] = useState(null);
+  
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/konten-penyulingan"
+      );
+      const data = response.data?.length > 0 ? response.data[0] : null;
+      setKontenPenyulinganData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setKontenPenyulinganData(null);
+    }
+  };
 
-  const sections = [
-    {
-      title: "Pengeringan Daun:",
-      items: [
-        "Sebelum penyulingan, daun sereh wangi harus dilayukan terlebih dahulu. Proses pelayuan bertujuan untuk mengurangi kadar air dalam daun sehingga minyak atsiri yang dihasilkan lebih murni.",
-        "Biasanya, dibutuhkan sekitar 700 kg daun sereh wangi untuk satu kali penyulingan. Daun dikeringkan di bawah sinar matahari selama 1-2 hari hingga kadar air berkurang.",
-      ],
-    },
-    {
-      title: "Proses Penyulingan:",
-      items: [
-        "Penyulingan dilakukan dengan menggunakan tungku penyulingan. Daun yang sudah layu dimasukkan ke dalam tungku, dan proses penyulingan berlangsung selama sekitar 4 jam dengan api yang stabil.",
-        "Satu tungku penyulingan berkapasitas 700-800 kg daun sereh wangi dan dapat dilakukan dua kali penyulingan per hari.",
-      ],
-    },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const imageUrl = DistilationImage;
   const altText = "Gambar Penyulingan";
 
   return (
@@ -64,13 +62,14 @@ const DistilationCultivationPage = () => {
         author="SerehGrow"
         detailsAuthor="Hasilkan Minyak Atsiri"
       />
-      {/* Bagian Detail Informasi Budidaya */}
-      <DetailedCultivationInformation
-        description={description}
-        sections={sections}
-        imageUrl={imageUrl}
-        altText={altText}
-      />{" "}
+      {kontenPenyulinganData && (
+        <DetailedCultivationInformation
+          header={kontenPenyulinganData.judul}
+          content={kontenPenyulinganData.isi_konten}
+          altText={altText}
+          imageUrl={`http://localhost:8000/storage/image-konten-budidaya/${kontenPenyulinganData.gambar}`}
+        />
+      )}
     </>
   );
 };

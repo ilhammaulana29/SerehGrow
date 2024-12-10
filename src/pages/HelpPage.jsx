@@ -1,36 +1,26 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import HelpPageImage from "../assets/images/help-page-image.png";
 import ChevronDown from "../assets/images/chevron-down.svg";
 import ContactForm from "../components/ContactFrom";
 
 const HelpPage = () => {
-  // Data untuk pertanyaan dan jawaban
-  const faqData = [
-    {
-      question: "Apa itu SEREHGROW?",
-      answer: `SEREHGROW adalah aplikasi manajemen terpadu yang dirancang
-      khusus untuk membantu petani dan pengelola perkebunan serehwangi
-      dalam mengoptimalkan setiap aspek proses produksi, mulai dari
-      perencanaan dan pengelolaan lahan hingga proses penyulingan
-      minyak atsiri. Aplikasi ini menawarkan fitur-fitur canggih yang
-      mempermudah pencatatan data, pemantauan pertumbuhan tanaman,
-      analisis hasil panen, dan manajemen produksi penyulingan,
-      sehingga memungkinkan pengguna untuk meningkatkan efisiensi,
-      kualitas, dan produktivitas secara keseluruhan.`,
-    },
-    {
-      question: "Apa saja produk SEREHGROW?",
-      answer: "Minyak Atsiri dan Geraniol",
-    },
-    {
-      question:
-        "Saya ingin mengajukan kerja sama dengan SEREHGROW, bagaimana caranya?",
-      answer:
-        "Anda bisa menghubungi kami lewat kontak yang ada di halaman kontak.",
-    },
-  ];
+  const [helpData, setHelp] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/help");
+      setHelp(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // State untuk mengontrol tampilan teks
   const [visibleContentIndex, setVisibleContentIndex] = useState(null);
@@ -70,13 +60,13 @@ const HelpPage = () => {
           </div>
           <hr className="border-t-2 border-gray-300 mt-2" />
           <div className="space-y-3 mt-5">
-            {faqData.map((item, index) => (
+            {helpData.map((item, index) => (
               <div key={index}>
                 <div
                   className="p-3 bg-gray-300 w-50 md-w rounded-md flex justify-between cursor-pointer"
                   onClick={() => toggleContentVisibility(index)}
                 >
-                  <p>{item.question}</p>
+                  <p>{item.pertanyaan}</p>
                   <img
                     src={ChevronDown}
                     alt="Toggle Answer"
@@ -84,7 +74,7 @@ const HelpPage = () => {
                   />
                 </div>
                 {visibleContentIndex === index && (
-                  <p className="text-justify mt-2">{item.answer}</p>
+                  <p className="text-justify mt-2">{item.jawaban}</p>
                 )}
               </div>
             ))}
