@@ -63,7 +63,7 @@ const CompanyPage = () => {
           <div className="w-full md:w-1/5 flex justify-center lg:hidden items-center mb-6">
             <img
               src={LogoCGI}
-              alt="Logo CGI"
+              alt="Logo"
               className="w-24 md:w-full md:h-auto object-contain"
             />
           </div>
