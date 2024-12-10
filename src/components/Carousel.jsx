@@ -71,7 +71,7 @@ const Carousel = () => {
           <img src={ChevronLeft} alt="Previous" className="w-4 h-7" />
         </div>
 
-        {/* Cards Display */}
+        {/* Cards Display */} 
         {dataImage
           .slice(currentIndex, currentIndex + visibleCards)
           .map((data) => (

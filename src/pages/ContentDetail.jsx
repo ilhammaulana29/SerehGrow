@@ -36,7 +36,7 @@ const ContentDetail = () => {
   }, [slug]);
 
   if (!detailContens) {
-    return <p>Artikel tidak ditemukan atau sedang dimuat...</p>;
+    return <div className="h-screen w-full bg-white"></div>;
   }
 
   // Format tanggal `created_at`

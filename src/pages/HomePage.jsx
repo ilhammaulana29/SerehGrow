@@ -6,50 +6,31 @@ import CultivationFlow from "../components/CultivationFlow";
 import FarmerStudyIcon from "../assets/images/farmer-study-icon.png";
 import HandphoneImage from "../assets/images/handphone-image.png";
 import InfromationCard from "../components/InformationCard";
-import TestimoniImage from "../assets/images/testimoni-image.png";
-import img1 from "../assets/imageGalery/1.jpeg";
 import News from "../components/News";
 import axios from "axios";
-
-const testimoniDatas = [
-  {
-    id: 1,
-    image: TestimoniImage,
-    description:
-      "Budidaya serehwangi di daerah terasering bisa meningkatkan potensi Agrowisata yang mampu membantu perekonomian masyarakat setempat dan membuat desa menjadi lebih maju",
-    author: "Artur Tendean Saputra",
-    detailsAuthor: "Mahasiswa Pertanian",
-  },
-  {
-    id: 2,
-    image: img1,
-    description:
-      "Budidaya serehwangi meminimalisir tanah dari bencana longsor, dan hasil minyaknya baik untuk kosmetik dan juga pengusir nyamuk",
-    author: "Tifany Anjasmara",
-    detailsAuthor: "Mahasiswa Pertanian",
-  },
-];
 
 const HomePage = () => {
   // State untuk melacak testimonial yang ditampilkan
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [infoSerehWangiData, setInfoSerehWangiData] = useState([]);
+  const [infoSerehGrowData, setInfoSerehGrowData] = useState([]);
+  const [testimonyData, setTestimonyData] = useState([]);
 
   // Fungsi untuk berpindah ke testimonial berikutnya
   const handleNext = () => {
     setCurrentTestimonial((prevIndex) =>
-      prevIndex === testimoniDatas.length - 1 ? 0 : prevIndex + 1
+      prevIndex === testimonyData.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Fungsi untuk berpindah ke testimonial sebelumnya
   const handlePrev = () => {
     setCurrentTestimonial((prevIndex) =>
-      prevIndex === 0 ? testimoniDatas.length - 1 : prevIndex - 1
+      prevIndex === 0 ? testimonyData.length - 1 : prevIndex - 1
     );
   };
 
-  const fetchData = async () => {
+  const fetchSerehWangiInfo = async () => {
     try {
       const response = await axios.get(
         "http://localhost:8000/api/info-sereh-wangi"
@@ -57,12 +38,56 @@ const HomePage = () => {
       setInfoSerehWangiData(response.data);
     } catch (error) {
       console.error("Error dalam mengambil data:", error);
+      setInfoSerehWangiData([
+        {
+          id: 1,
+          deskripsi_sereh_wangi: "Deskripsi sereh wangi tidak tersedia.",
+          gambar: "https://via.placeholder.com/150",
+        },
+      ]);
+    }
+  };
+
+  const fetchSerehGrowInfo = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/info-sereh-grow"
+      );
+      setInfoSerehGrowData(response.data);
+    } catch (error) {
+      console.error("Error dalam mengambil data:", error);
+      setInfoSerehGrowData([
+        {
+          id: 1,
+          deskripsi_sereh_wangi: "Deskripsi sereh grow tidak tersedia.",
+          gambar: "https://via.placeholder.com/150",
+        },
+      ]);
+    }
+  };
+
+  const fetchTestimony = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/testimoni");
+      setTestimonyData(response.data);
+    } catch (error) {
+      console.error("Error dalam mengambil data:", error);
     }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchSerehWangiInfo();
+    fetchSerehGrowInfo();
+    fetchTestimony();
+
+    // Auto slide testimonials every 3 seconds
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000); // 3000ms = 3 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [testimonyData.length]);
 
   return (
     <>
@@ -107,7 +132,11 @@ const HomePage = () => {
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="w-60 h-60 lg:w-96 lg:h-96 rounded-full overflow-hidden">
               <img
-                src={`http://localhost:8000/storage/image-landing-page/${data.gambar}`}
+                src={
+                  data.gambar.startsWith("http")
+                    ? data.gambar
+                    : `http://localhost:8000/storage/image-landing-page/${data.gambar}`
+                }
                 alt="Sereh Wangi"
                 className="object-cover w-full h-full rounded-full"
               />
@@ -150,49 +179,53 @@ const HomePage = () => {
       </div>
 
       {/* Penjelasan Aplikasi SEREHGROW */}
-      <div className="lg:px-12 px-4 mt-20">
-        <h2 className="text-green1 text-3xl font-bold text-center lg:text-left mb-5">
-          Aplikasi SerehGrow
-        </h2>
-        <div className="flex lg:flex-row flex-col-reverse bg-gray-100 p-6">
-          <div className="lg:w-9/12 w-full">
-            <p className="text-justify text-lg text-gray-600 font-medium">
-              <b className="text-green1">SEREHGROW</b> adalah aplikasi manajemen
-              terpadu yang dirancang khusus untuk membantu petani dan pengelola
-              perkebunan serehwangi dalam mengoptimalkan setiap aspek proses
-              produksi, mulai dari perencanaan dan pengelolaan lahan hingga
-              proses penyulingan minyak atsiri. Aplikasi ini menawarkan
-              fitur-fitur canggih yang mempermudah pencatatan data, pemantauan
-              pertumbuhan tanaman, analisis hasil panen, dan manajemen produksi
-              penyulingan, sehingga memungkinkan pengguna untuk meningkatkan
-              efisiensi, kualitas, dan produktivitas secara keseluruhan.
-            </p>
-            <a
-              href=""
-              className="text-green1 text-lg mt-5 font-medium hover:underline inline-block"
-            >
-              Pelajari Lebih
-            </a>
-          </div>
-          <div className="lg:w-3/12 w-full">
-            <img src={HandphoneImage} alt="" className="w-full h-auto" />
+      {infoSerehGrowData.map((data) => (
+        <div key={data.id} className="lg:px-12 px-4 mt-20">
+          <h2 className="text-green1 text-3xl font-bold text-center lg:text-left mb-5">
+            Aplikasi SerehGrow
+          </h2>
+          <div className="flex lg:flex-row flex-col-reverse bg-gray-100 p-6">
+            <div className="lg:w-9/12 w-full">
+              <p className="text-justify text-lg text-gray-600 font-medium">
+                {data.deskripsi_sereh_grow}
+              </p>
+              <p
+                href=""
+                className="text-green1 text-lg mt-5 font-medium hover:underline hover:cursor-pointer inline-block"
+              >
+                Pelajari Lebih
+              </p>
+            </div>
+            <div className="lg:w-3/12 w-full">
+              <img
+                src={
+                  data.gambar.startsWith("http")
+                    ? data.gambar
+                    : `http://localhost:8000/storage/image-landing-page/${data.gambar}`
+                }
+                alt="Sereh Grow"
+                className="w-full h-auto"
+              />{" "}
+            </div>
           </div>
         </div>
-      </div>
+      ))}
 
       {/* Bagian informasi Testimoni */}
-      <InfromationCard
-        description={`\" ${testimoniDatas[currentTestimonial].description} \"`}
-        author={testimoniDatas[currentTestimonial].author}
-        detailsAuthor={testimoniDatas[currentTestimonial].detailsAuthor}
-        image={testimoniDatas[currentTestimonial].image}
-        classNameTagLine="lg:hidden hidden"
-        classNameDescription="font-mono"
-        classNameAuthor="font-mono"
-        classBtnPrevAndNext="flex"
-        prevOnClick={handlePrev}
-        nextOnClick={handleNext}
-      />
+      {testimonyData.length > 0 && (
+        <InfromationCard
+          description={`\" ${testimonyData[currentTestimonial]?.pesan_testimoni} \"`}
+          author={testimonyData[currentTestimonial]?.nama}
+          profesi={testimonyData[currentTestimonial]?.profesi}
+          image={`http://localhost:8000/storage/image-landing-page/${testimonyData[currentTestimonial]?.gambar}`}
+          classNameTagLine="lg:hidden hidden"
+          classNameDescription="font-mono"
+          classNameAuthor="font-mono"
+          classBtnPrevAndNext="flex"
+          prevOnClick={handlePrev}
+          nextOnClick={handleNext}
+        />
+      )}
 
       <News />
     </>
