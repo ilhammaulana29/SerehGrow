@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import "dayjs/locale/id"; // Import untuk locale Indonesia
 import HeroSection from "../components/HeroSection";
 import ContentPageImage from "../assets/images/content-page-image.png";
 import Content from "../components/Content";
 import News from "../components/News";
 
+dayjs.locale("id"); // Set locale ke Indonesia
+
 const ContentsPage = () => {
-  // State untuk menyimpan data artikel yang diterima dari API Laravel
   const [contents, setContent] = useState([]);
 
-  // useEffect untuk mengambil data dari API Laravel saat komponen pertama kali dirender
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/article-content") // Sesuaikan URL ini dengan konfigurasi API Laravel Anda
+      .get("http://localhost:8000/api/article-content")
       .then((response) => {
-        setContent(response.data); // Asumsi bahwa data di respons berbentuk array
+        setContent(response.data);
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);
@@ -43,7 +45,6 @@ const ContentsPage = () => {
         <p className="text-xl font-medium mb-4">Resource</p>
 
         <div className="lg:px-12 px-2 flex flex-col lg:grid lg:grid-cols-12 gap-4">
-          {/* Pastikan artikel pertama ada sebelum menampilkan */}
           {contents[0] && (
             <Content
               containerClass="lg:col-span-8 flex flex-col-reverse lg:flex-row shadow-lg p-4"
@@ -58,7 +59,7 @@ const ContentsPage = () => {
                 </Link>
               }
               dateClass="text-xl font-medium"
-              dateText={contents[0].created_at}
+              dateText={dayjs(contents[0].created_at).format("DD MMMM YYYY")}
               imageContainerClass="lg:w-5/12"
               imageClass="lg:w-96 lg:h-96 w-full h-56 object-cover"
               imageSrc={`http://localhost:8000/storage/image-content/${contents[0].gambar}`}
@@ -81,7 +82,7 @@ const ContentsPage = () => {
                   </Link>
                 }
                 dateClass="text-sm font-medium"
-                dateText={content.created_at}
+                dateText={dayjs(content.created_at).format("DD MMMM YYYY")}
                 imageContainerClass="lg:w-5/12"
                 imageClass="w-full h-24"
                 imageSrc={`http://localhost:8000/storage/image-content/${content.gambar}`}
@@ -112,7 +113,7 @@ const ContentsPage = () => {
                     </Link>
                   }
                   dateClass="text-sm font-medium"
-                  dateText={content.created_at}
+                  dateText={dayjs(content.created_at).format("DD MMMM YYYY")}
                   imageContainerClass="lg:w-5/12"
                   imageClass="w-full h-48 object-cover"
                   imageSrc={`http://localhost:8000/storage/image-content/${content.gambar}`}

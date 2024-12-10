@@ -1,4 +1,5 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import CultivationPageImage from "../assets/images/cultivation-page-image.png";
 import Carousel from "../components/Carousel";
@@ -6,30 +7,27 @@ import CultivationFlow from "../components/CultivationFlow";
 import InformationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
 import DetailedCultivationInformation from "../components/DetailedCultivationInformation";
-import LandImage from "../assets/images/land-image.png";
 
 const LandCultivationPage = () => {
-  const description =
-    "Lahan yang tepat adalah kunci untuk pertumbuhan sereh wangi yang optimal. Penentuan lokasi dan persiapan lahan secara benar akan mempengaruhi hasil panen secara keseluruhan.";
+  const [kontenPersiapanLahanData, setKontenPersiapanLahanData] = useState(null);
 
-  const sections = [
-    {
-      title: "Lokasi Penanaman:",
-      items: [
-        "Sereh wangi membutuhkan area yang terbuka dengan paparan sinar matahari penuh sepanjang hari. Tanaman ini tidak cocok untuk ditanam di daerah yang teduh atau terlindungi dari sinar matahari.",
-        "Jarak tanam yang ideal adalah 1 meter antar rumpun. Jarak ini memungkinkan setiap rumpun memiliki ruang yang cukup untuk tumbuh dan menghindari persaingan sumber daya seperti air dan nutrisi."
-      ],
-    },
-    {
-      title: "Persiapan Lahan:",
-      items: [
-        "Pembukaan Lahan: Lahan perlu dibersihkan dari semua jenis gulma, tanaman liar, dan sisa-sisa tanaman sebelumnya. Pengolahan tanah dilakukan untuk memperbaiki struktur tanah sehingga lebih gembur dan memiliki drainase yang baik.",
-        "Pengendalian Rumput Liar: Penting untuk melakukan pengendalian rumput liar secara rutin. Gulma yang tumbuh di sekitar sereh wangi dapat menyerap nutrisi dan air yang seharusnya digunakan oleh tanaman sereh wangi, sehingga dapat menghambat pertumbuhan."
-      ],
-    },
-  ];
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/konten-lahan"
+      );
+      const data = response.data?.length > 0 ? response.data[0] : null;
+      setKontenPersiapanLahanData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setKontenPersiapanLahanData(null);
+    }
+  };
 
-  const imageUrl = LandImage;
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const altText = "Gambar Lahan";
 
   return (
@@ -65,12 +63,14 @@ const LandCultivationPage = () => {
         detailsAuthor="Hasilkan Minyak Atsiri"
       />
       {/* Bagian Detail Informasi Budidaya */}
-      <DetailedCultivationInformation
-        description={description}
-        sections={sections}
-        imageUrl={imageUrl}
-        altText={altText}
-      />{" "}
+      {kontenPersiapanLahanData && (
+        <DetailedCultivationInformation
+          header={kontenPersiapanLahanData.judul}
+          content={kontenPersiapanLahanData.isi_konten}
+          altText={altText}
+          imageUrl={`http://localhost:8000/storage/image-konten-budidaya/${kontenPersiapanLahanData.gambar}`}
+        />
+      )}
     </>
   );
 };

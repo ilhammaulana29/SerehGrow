@@ -1,5 +1,5 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import CultivationPageImage from "../assets/images/cultivation-page-image.png";
 import Carousel from "../components/Carousel";
@@ -7,30 +7,27 @@ import CultivationFlow from "../components/CultivationFlow";
 import InformationCard from "../components/InformationCard";
 import TestimoniImage from "../assets/images/testimoni-image.png";
 import DetailedCultivationInformation from "../components/DetailedCultivationInformation";
-import SeedImage from "../assets/images/lemongrass-image.png";
 
 const SeedCultivationPage = () => {
-  const description =
-    "Pemilihan bibit merupakan langkah krusial dalam memulai budidaya sereh wangi. Bibit yang berkualitas tinggi akan menjamin pertumbuhan tanaman yang optimal dan hasil minyak atsiri yang maksimal.";
+  const [kontenBibitData, setKontenBibitData] = useState(null);
 
-  const sections = [
-    {
-      title: "Jenis Bibit yang Direkomendasikan:",
-      items: [
-        "G2 dan G3: Jenis bibit ini sangat direkomendasikan karena telah terbukti memberikan hasil minyak atsiri dengan kualitas yang baik serta produktivitas tinggi.",
-        "Paris dan Balon: Jenis bibit alternatif yang juga dapat digunakan, meskipun mungkin tidak seunggul G2 dan G3 dalam hal produksi minyak atsiri.",
-      ],
-    },
-    {
-      title: "Ciri-ciri Bibit Unggul:",
-      items: [
-        "Setiap rumpun bibit sereh wangi idealnya terdiri dari 80 hingga 120 tangkai atau daun. Bibit yang lebih padat dalam satu rumpun cenderung memiliki potensi pertumbuhan yang lebih kuat.",
-        "Bibit yang dipilih harus bebas dari penyakit dan hama. Daun yang sehat biasanya memiliki warna hijau cerah tanpa adanya bercak-bercak kuning atau coklat.",
-      ],
-    },
-  ];
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/konten-bibit"
+      );
+      const data = response.data?.length > 0 ? response.data[0] : null;
+      setKontenBibitData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setKontenBibitData(null);
+    }
+  };
 
-  const imageUrl = SeedImage;
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const altText = "Gambar Bibit Sereh Wangi";
 
   return (
@@ -55,7 +52,7 @@ const SeedCultivationPage = () => {
       <Carousel />
       {/* Bagian Alur Budidaya */}
       <CultivationFlow />
-      {/* Baagian Informasi Singkat Budidaya */}
+      {/* Bagian Informasi Singkat Budidaya */}
       <InformationCard
         classNameTestimoni="lg:hidden hidden"
         image={TestimoniImage}
@@ -68,12 +65,14 @@ const SeedCultivationPage = () => {
         detailsAuthor="Hasilkan Minyak Atsiri"
       />
       {/* Bagian Detail Informasi Budidaya */}
-      <DetailedCultivationInformation
-        description={description}
-        sections={sections}
-        imageUrl={imageUrl}
-        altText={altText}
-      />{" "}
+      {kontenBibitData && (
+        <DetailedCultivationInformation
+          header={kontenBibitData.judul}
+          content={kontenBibitData.isi_konten}
+          altText={altText}
+          imageUrl={`http://localhost:8000/storage/image-konten-budidaya/${kontenBibitData.gambar}`}
+        />
+      )}
     </>
   );
 };
