@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";  // Import Link
+import React, { useEffect, useState } from "react";
+import axios from "axios"; // Import Axios
+import { Link } from "react-router-dom"; // Import Link
 import logo from "../assets/images/Logo.png";
 import Instagram from "../assets/images/instagram.png";
 import Facebook from "../assets/images/facebook.png";
@@ -8,6 +9,23 @@ import Tiktok from "../assets/images/tiktok.png";
 import Farmer from "../assets/images/farmer.png";
 
 const Footer = () => {
+  const [address, setAddress] = useState([]); // State untuk menyimpan data alamat
+  const [error, setError] = useState(null); // State untuk menyimpan error jika ada
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/company-address"
+      );
+      setAddress(response.data);
+    } catch (error) {
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <footer className="bg-greenPrimer text-white py-8 lg:py-20 relative">
       {/* Butuh Bantuan Section */}
@@ -29,14 +47,25 @@ const Footer = () => {
           <p className="mb-0 text-xs font-semibold lg:mb-3 lg:text-base">
             PT CAKRAWALA GLOBAL INFORMATIKA
           </p>
-          <p className="text-xs lg:text-base">
-            Jl. Saturnus Sel. II No.10, Margasari, Kec. Buahbatu,
-          </p>
-          <p className="text-xs lg:text-base">Kota Bandung, Jawa Barat 40286</p>
+          {address.map((data) => (
+            <div key={data.id_cpaddress} className="">
+              <p className="flex flex-wrap text-xs lg:text-base">
+                <span>{data.jalan}</span>{" "}
+                <span className="ml-1">{data.desa}</span>
+              </p>
+              <p className="flex flex-wrap text-xs lg:text-base">
+                <span>{data.kecamatan}</span>{" "}
+                <span className="ml-1">{data.kabupaten}</span>{" "}
+                <span className="ml-1">{data.provinsi}</span>{" "}
+                <span className="ml-1">{data.kode_pos}</span>
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* Bagian Kanan */}
+        {/* Bagian kanan (navigasi dan media sosial) */}
         <div className="mb-8 flex flex-col lg:flex-row lg:space-x-16 lg:mb-0">
+          {/* Tautan navigasi lainnya */}
           <div>
             <h4 className="font-bold mb-2 text-sm lg:text-base lg:mb-4">
               Perusahaan
