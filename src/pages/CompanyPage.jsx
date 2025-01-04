@@ -57,13 +57,13 @@ const CompanyPage = () => {
             </p>
           </div>
           <div className="text-lg md:text-xl font-medium pb-4">
-            <p>Profil PT Cakrawala Global Informatika</p>
+            <p>Profil PT. Cakrawala Global Informatika</p>
           </div>
           {/* Mobile Logo */}
           <div className="w-full md:w-1/5 flex justify-center lg:hidden items-center mb-6">
             <img
               src={LogoCGI}
-              alt="Logo CGI"
+              alt="Logo"
               className="w-24 md:w-full md:h-auto object-contain"
             />
           </div>
