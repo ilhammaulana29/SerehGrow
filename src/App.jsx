@@ -15,6 +15,7 @@ import DistilationCultivationPage from "./pages/DistilationCultivationPage";
 import GeneralLayout from "./layouts/GeneralLayout";
 import ContentDetail from "./pages/ContentDetail";
 import NotFoundPage from "./pages/NotFoundPage";
+import SDMCultivationPage from "./pages/SDMCultivationPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/penanaman" element={<PlantingCultivationPage />} />
           <Route path="/panen" element={<HarvestCultivationPage />} />
           <Route path="/penyulingan" element={<DistilationCultivationPage />} />
+          <Route path="/sdm-budidaya-sereh-wangi" element={<SDMCultivationPage />} />
           {/* Route untuk gallery dengan parameter category */}
           <Route path="/galeri/:category" element={<GaleryPage />} />
           {/* Route untuk DetailKonten dengan paramater slug */}

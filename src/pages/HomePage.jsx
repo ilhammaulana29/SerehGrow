@@ -18,17 +18,21 @@ const HomePage = () => {
 
   // Fungsi untuk berpindah ke testimonial berikutnya
   const handleNext = () => {
-    setCurrentTestimonial((prevIndex) =>
-      prevIndex === testimonyData.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentTestimonial((prevIndex) => {
+      const nextIndex = prevIndex === testimonyData.length - 1 ? 0 : prevIndex + 1;
+      console.log("Next testimonial index:", nextIndex);
+      return nextIndex;
+    });
   };
-
-  // Fungsi untuk berpindah ke testimonial sebelumnya
+  
   const handlePrev = () => {
-    setCurrentTestimonial((prevIndex) =>
-      prevIndex === 0 ? testimonyData.length - 1 : prevIndex - 1
-    );
+    setCurrentTestimonial((prevIndex) => {
+      const prevIndexNew = prevIndex === 0 ? testimonyData.length - 1 : prevIndex - 1;
+      console.log("Previous testimonial index:", prevIndexNew);
+      return prevIndexNew;
+    });
   };
+  
 
   const fetchSerehWangiInfo = async () => {
     try {
@@ -69,6 +73,7 @@ const HomePage = () => {
   const fetchTestimony = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/testimoni");
+      console.log("Data yang diperoleh:", response.data); // Log data ke console
       setTestimonyData(response.data);
     } catch (error) {
       console.error("Error dalam mengambil data:", error);
@@ -83,7 +88,7 @@ const HomePage = () => {
     // Auto slide testimonials every 3 seconds
     const interval = setInterval(() => {
       handleNext();
-    }, 3000); // 3000ms = 3 seconds
+    }, 5000); // 5000ms = 5 seconds
 
     // Cleanup interval on component unmount
     return () => clearInterval(interval);
@@ -212,7 +217,7 @@ const HomePage = () => {
       ))}
 
       {/* Bagian informasi Testimoni */}
-      {testimonyData.length > 0 && (
+      {testimonyData.length > 0 ? (
         <InfromationCard
           description={`\" ${testimonyData[currentTestimonial]?.pesan_testimoni} \"`}
           author={testimonyData[currentTestimonial]?.nama}
@@ -225,6 +230,8 @@ const HomePage = () => {
           prevOnClick={handlePrev}
           nextOnClick={handleNext}
         />
+      ) : (
+        <p>loading...</p>
       )}
 
       <News />

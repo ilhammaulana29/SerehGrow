@@ -6,6 +6,7 @@ import cultivationFlowSecond from "../assets/images/cultivation-flow-2.svg";
 import cultivationFlowThird from "../assets/images/cultivation-flow-3.svg";
 import cultivationFlowFourth from "../assets/images/cultivation-flow-4.svg";
 import cultivationFlowFiveth from "../assets/images/cultivation-flow-5.svg";
+import cultivationFlowSixth from "../assets/images/cultivation-flow-6.svg";
 
 const CultivationFlow = () => {
   const location = useLocation(); // Ambil lokasi saat ini
@@ -103,6 +104,22 @@ const CultivationFlow = () => {
               location.pathname === "/penyulingan" ? "text-white" : "text-green1"
             }`}
             textContent="Penyulingan"
+          />
+        </Link>
+
+        <Link to="/sdm-budidaya-sereh-wangi">
+          <Card
+            className={`w-40 h-40 lg:w-56 lg:h-56 flex-shrink-0 drop-shadow-lg rounded-md ${
+              location.pathname === "/sdm-budidaya-sereh-wangi"
+                ? "bg-greenPrimer"
+                : "bg-green3 hover:bg-green-200"
+            }`}
+            cardImage={cultivationFlowSixth}
+            classNameCardImage={`mb-4 ${getFilterClass("/sdm-budidaya-sereh-wangi")}`} // Gunakan kelas filter
+            classNameCardText={`font-bold ${
+              location.pathname === "/sdm-budidaya-sereh-wangi" ? "text-white" : "text-green1"
+            }`}
+            textContent="Sumber Daya Manusia"
           />
         </Link>
       </div>
